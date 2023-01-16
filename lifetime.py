@@ -6,8 +6,8 @@ outf = ROOT.TFile("out_lifetime.root", "recreate")
 pi = ROOT.TMath.Pi()
 h = 6.6 * 1e-16 #ev/s
 
-n_bins_g = 1000
-n_bins_m = 1000
+n_bins_g = 20
+n_bins_m = 20
 min_g = 1e-5 #Gev^-1
 max_g = 5e-2 #Gev^-1
 min_m = 1e-3 # GeV
@@ -36,7 +36,7 @@ for n_bin_g in range(n_bins_g):
     tau = h/width * lorentz_gamma * 1e9 #ns
 
 
-    l = lorentz_gamma * lorentz_beta * tau * 300  #mm
+    l = lorentz_beta * tau * 300  #mm
 
     h_width.SetBinContent(n_bin_m, n_bin_g, width)
     h_tau.SetBinContent(n_bin_m, n_bin_g, tau)
@@ -47,4 +47,3 @@ h_tau.Write()
 h_l.Write()
 
 outf.Close()
-
